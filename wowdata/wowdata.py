@@ -4,16 +4,21 @@ Module Docstring
 import pprint as pp
 from selenium import webdriver
 from bs4 import BeautifulSoup
+import pandas as pd
 
 
 def main_function():
     '''Function Doc String
     '''
+    #   Name Rewards Faction Ends at... Zone
     records = fetch_wowhead_dailies()
-    name   = [i[0] for i in records]
-    something  = [i[1] for i in records]
+    pddata = pd.DataFrame(records)
 
-    pp.pprint(name)
+    
+    # name   = [i[0] for i in records]
+    # something  = [i[1] for i in records]
+
+    pp.pprint(pddata.head)
 
 def fetch_wowhead_dailies():
     '''docstr
@@ -36,7 +41,6 @@ def fetch_wowhead_dailies():
         arrSub = []
         for index, itemCell in enumerate(record.children):
             arrSub.insert(index, itemCell.text)
-            print("{} {}".format(index, itemCell.text))
         arrMain.append(arrSub)
     
     return arrMain
