@@ -10,7 +10,10 @@ def main_function():
     '''Function Doc String
     '''
     records = fetch_wowhead_dailies()
+    name   = [i[0] for i in records]
+    something  = [i[1] for i in records]
 
+    pp.pprint(name)
 
 def fetch_wowhead_dailies():
     '''docstr
