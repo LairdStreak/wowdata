@@ -23,30 +23,22 @@ def main_function():
     # something  = [i[1] for i in records]
 
     # pp.pprint(pddata.head)
-    result = True # fetch_wowaucdata()
+    # result = fetch_wowaucdata()
+    result = True
     if result:
         pandaFrame = build_panda_dataframe()
         # Realm_Name = pandaFrame['Realm Name'].unique()
         # Item_Name = pandaFrame['Item Name'].unique()
-        profitItems = pandaFrame[pandaFrame['PMktPrice StdDev'] > 0]
-        profitItems = profitItems.head(10)
+        glyphRows = pandaFrame.loc[pandaFrame['Item Name'].str.contains('Glyph of')]
+        profitItems = glyphRows[glyphRows['PMktPrice StdDev'] > 0]
+        profitItems = profitItems.head(5)
 
         dfItemList = profitItems['Item Name'].tolist()
         dfValueList = profitItems['PMktPrice StdDev'].tolist()
         
-        plt.plot(dfItemList, dfValueList)
+        plt.xticks(rotation=90)
+        plt.bar(dfItemList, dfValueList,color=['black', 'red', 'green', 'blue', 'cyan'])
         plt.show()
-        #Item_Name = profitItems['Item Name'].unique()
-        #for iName in Item_Name:
-        #    recordItem = profitItems.loc[profitItems['Item Name'] == iName]
-        #    print(recordItem['Item Name'])
-            # print(iName)
-        #for rname in Realm_Name:
-        #    print(rname)
-        #    for iName in Item_Name:
-        #        print(iName)
-
-        # pp.pprint(pandaFrame)
 
 def build_panda_dataframe():
     '''docstr'''
