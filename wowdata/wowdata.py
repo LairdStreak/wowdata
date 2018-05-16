@@ -17,14 +17,15 @@ def main_function():
     '''
     #   Name Rewards Faction Ends at... Zone
     #records = fetch_wowhead_dailies()
+
     #pddata = pd.DataFrame(records)
     # list of aray from list of lists 
     # name   = [i[0] for i in records]
     # something  = [i[1] for i in records]
 
     # pp.pprint(pddata.head)
-    # result = fetch_wowaucdata()
-    result = True
+    result = fetch_wowaucdata()
+    # result = True
     if result:
         pandaFrame = build_panda_dataframe()
         # Realm_Name = pandaFrame['Realm Name'].unique()
